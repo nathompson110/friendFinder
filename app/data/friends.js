@@ -56,6 +56,3 @@ var friendArray = [
 
 
 module.exports = friendArray;
-// module.exports = myBestFriendName;
-// module.exports = myBestFriendPhoto;
-// module.exports = bestFriend;

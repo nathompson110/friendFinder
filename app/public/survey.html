@@ -167,7 +167,8 @@
             </form>
             <br>
             <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="glyphicon glyphicon-fire"></span> Find My Friend</button>
+              <button onclick="document.getElementById('surveyResults').style.display='block'" type="submit" class="btn btn-primary btn-md" id="survey-submit"><span class="glyphicon glyphicon-fire"></span> Find My Friend</button>
+              
             </div>
           </div>
         </div>
@@ -183,8 +184,8 @@
  </div>
 
   <script type="text/javascript">
-    // Question: What does this code do?
-    $("#add-btn").on("click", function(event) {
+   
+    $("#survey-submit").on("click", function(event) {
       event.preventDefault();
       var newFriend= {
         name: $("#survey-name").val().trim(),
@@ -203,76 +204,38 @@
       ]
       };
  console.log(newFriend);
+ 
     
       $.post("/api/friends", newFriend,
-      function(data) {
-        console.log(data);
+      function(friendArray) {
+        console.log(friendArray);
         
+   
+
+
       
       });
     });
   </script>
 
-<!-- Modal -->
-  <div class="modal fade" id="surveyResults" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-        <style>
-          .modal-header{
-            font-family: 'Open Sans', sans-serif;
-          }
-        </style>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Your New Best Friend!</h4>
-        </div>
-        <div class="modal-body">
-        <style>
-          .modal-body{
-            font-family: 'Open Sans', sans-serif;
-          }
-        </style>
-         <h2> Your New Best Friend!</h2>
-          <div>Name: <span id='newbfname'></span></div>
-          <div>Photo: <span id='newbfphoto'></span></div>
-        </div>
-        <div class="modal-footer">
-        <style>
-          .modal-footer{
-            font-family: 'Open Sans', sans-serif;
-          }
-        </style>
-        
-        </div>
+<div class="container">
+ 
+ 
+
+  <div id="surveyResults" class="modal">
+    <div class="modal-content">
+      <div class="container">
+        <span onclick="document.getElementById('surveyResults').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        <h2> <span id ="survey_name"></span>, your NEW BEST FRIEND is....</h2>
+        <p>Name: <span id ="result_name"></span></p>
+       <img id="result_img" src="" alt="No photo" width="200">
       </div>
     </div>
   </div>
-
+</div>
 <script type = "text/javascript">
-var myBestFriendName;
-var myBestFriendPhoto;
-
-function bestFriend (newFriend){
-  var matchArray = [];
-  var totalMatch=0;
-for(i=0; i<friendArray.length; i++){
-  for(j=0; j<friendArray[0].surveyAnswers.length; j++)
-  {
-  var eachAns = Math.abs(parseInt(friendArray[i].surveyAnswers[j],10)- parseInt(newFriend.surveyAnswers[j],10));
-  console.log(eachAns)
-  totalMatch += eachAns;}
-  matchArray.push(totalMatch);
-  totalMatch = 0;
-console.log(matchArray)
 
 
-}
-console.log(matchArray.indexOf(Math.min.apply(null, matchArray)))
-console.log(friendArray[matchArray.indexOf(Math.min.apply(null, matchArray))].name);
-myBestFriendName = friendArray[matchArray.indexOf(Math.min.apply(null, matchArray))].name;
-myBestFriendPhoto = friendArray[matchArray.indexOf(Math.min.apply(null, matchArray))].photo;
-
-};
-</script>
+  </script>
 </body>
 </html>
