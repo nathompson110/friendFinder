@@ -30,11 +30,20 @@
           <div class="panel-body">
             <form method="POST" role="form">
 
+              
               <div class="form-group">
+                <label for="survey-name">Name</label>
+                <input type="text" class="form-control" id="survey-name">
+              </div>
+
+              <div class="form-group">
+                <label for="photo-link">Photo link</label>
+                <input type="text" class="form-control" id="photo-link">
+              </div>
 
               <div class="form-group">
             <label>Parent Trap</label>
-            <select class="form-control">
+            <select class="form-control" id="q1">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -46,7 +55,7 @@
 
             <div class="form-group">
             <label>Guardians of the Galaxy</label>
-            <select class="form-control">
+            <select class="form-control" id="q2">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -58,7 +67,7 @@
 
            <div class="form-group">
             <label>The Notebook</label>
-            <select class="form-control">
+            <select class="form-control" id="q3">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -70,7 +79,7 @@
 
            <div class="form-group">
             <label>Twilight</label>
-            <select class="form-control">
+            <select class="form-control" id="q4">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -82,7 +91,7 @@
 
            <div class="form-group">
             <label>The Fall</label>
-            <select class="form-control">
+            <select class="form-control"  id="q5">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -94,7 +103,7 @@
 
            <div class="form-group">
             <label>Miracle</label>
-            <select class="form-control">
+            <select class="form-control" id="q6">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -107,7 +116,7 @@
 
            <div class="form-group">
             <label>Moana</label>
-            <select class="form-control">
+            <select class="form-control" id="q7">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -119,7 +128,7 @@
 
            <div class="form-group">
             <label>Austin Powers</label>
-            <select class="form-control">
+            <select class="form-control" id="q8">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -130,7 +139,7 @@
           </div>
            <div class="form-group">
             <label>Italian Job</label>
-            <select class="form-control">
+            <select class="form-control" id="q9">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -141,7 +150,7 @@
           </div>
            <div class="form-group">
             <label>Get Out</label>
-            <select class="form-control">
+            <select class="form-control" id="q10">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -158,31 +167,47 @@
             </form>
             <br>
             <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="glyphicon glyphicon-fire"></span> Add to the Force</button>
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="glyphicon glyphicon-fire"></span> Find My Friend</button>
             </div>
           </div>
         </div>
 
       </div>
     </div>
-  </div>
+ 
+    <footer class="footer">
+      <div class="container">
+        <p><a href="/api/friends">API Table Link</a> |  <a href="https://github.com/afhaque/HotRestaurant">GitHub Repo</a></p>
+      </div>
+    </footer>
+ </div>
 
   <script type="text/javascript">
     // Question: What does this code do?
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
-      var newCharacter = {
-        name: $("#name").val().trim(),
-        role: $("#role").val().trim(),
-        age: $("#age").val().trim(),
-        forcePoints: $("#force-points").val().trim()
+      var newFriend= {
+        name: $("#survey-name").val().trim(),
+        photo: $("#photo-link").val().trim(),
+        surveyAnswers: [
+          +$("#q1").val().trim(),
+          $("#q2").val().trim(),
+          $("#q3").val().trim(),
+          $("#q4").val().trim(),
+          $("#q5").val().trim(),
+          $("#q6").val().trim(),
+          $("#q7").val().trim(),
+          $("#q8").val().trim(),
+          $("#q9").val().trim(),
+          $("#q10").val().trim(),
+      ]
       };
-
-      // Question: What does this code do??
-      $.post("/api/new", newCharacter)
-      .done(function(data) {
+ console.log(newFriend);
+    
+      $.post("/api/friends", newFriend,
+      function(data) {
         console.log(data);
-        alert("Adding character...");
+      
       });
     });
   </script>

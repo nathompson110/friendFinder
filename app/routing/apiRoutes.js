@@ -6,15 +6,11 @@ var friendsData = require("../data/friends");
 module.exports = function(app) {
 
   app.get("/api/friends", function(req, res) {
-    res.json(tableData);
+    res.json(friendsData);
   });
-
-
 
   app.post("/api/friends", function(req, res) {
-      waitListData.push(req.body);
-      res.json(false);
-    
+      friendsData.push(req.body);
+ 
   });
-
 };
