@@ -1,5 +1,3 @@
-var myBestFriendName;
-var myBestFriendPhoto;
 
 var friendArray = [
   {
@@ -52,33 +50,12 @@ var friendArray = [
   }
 ];
 
-function bestFriend (newFriend){
-  var matchArray = [];
-  var totalMatch=0;
-for(i=0; i<friendArray.length; i++){
-  for(j=0; j<friendArray[0].surveyAnswers.length; j++)
-  {
-  var eachAns = Math.abs(parseInt(friendArray[i].surveyAnswers[j],10)- parseInt(newFriend.surveyAnswers[j],10));
-  console.log(eachAns)
-  totalMatch += eachAns;}
-  matchArray.push(totalMatch);
-  totalMatch = 0;
-console.log(matchArray)
-
-
-}
-console.log(matchArray.indexOf(Math.min.apply(null, matchArray)))
-console.log(friendArray[matchArray.indexOf(Math.min.apply(null, matchArray))].name);
-myBestFriendName = friendArray[matchArray.indexOf(Math.min.apply(null, matchArray))].name;
-myBestFriendPhoto = friendArray[matchArray.indexOf(Math.min.apply(null, matchArray))].photo;
-
-};
 
 
 
-bestFriend();
+
 
 module.exports = friendArray;
-module.exports = myBestFriendName;
-module.exports = myBestFriendPhoto;
-module.exports = bestFriend;
+// module.exports = myBestFriendName;
+// module.exports = myBestFriendPhoto;
+// module.exports = bestFriend;
