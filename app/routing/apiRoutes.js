@@ -1,21 +1,24 @@
-var friendsData = require("../data/friends");
-
+var friendArray = require("../data/friends");
+  var myBestFriendName;
+  var myBestFriendPhoto;
+  var x;
 
 
 
 module.exports = function(app) {
 
   app.get("/api/friends", function(req, res) {
-    res.json(friendsData);
+    res.json(friendArray);
   });
 
   app.post("/api/friends", function(req, res) {
-      friendsData.push(req.body);
+      friendArray.push(req.body);
+      bestFriend();
+      res.json(x);
  
   });
 
-    var myBestFriendName;
-  var myBestFriendPhoto;
+  
 //WHERE DOES THIS GO?!?!?!?!?!
   function bestFriend (){
   var matchArray = [];
@@ -36,6 +39,7 @@ module.exports = function(app) {
   console.log(friendArray[matchArray.indexOf(Math.min.apply(null, matchArray))].name);
   myBestFriendName = friendArray[matchArray.indexOf(Math.min.apply(null, matchArray))].name;
   myBestFriendPhoto = friendArray[matchArray.indexOf(Math.min.apply(null, matchArray))].photo;
-
+x=friendArray[matchArray.indexOf(Math.min.apply(null, matchArray))]
   };
 };
+

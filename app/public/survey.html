@@ -183,7 +183,23 @@
     </footer>
  </div>
 
-  <script type="text/javascript">
+ 
+<div class="container">
+ 
+ 
+
+  <div id="surveyResults" class="modal">
+    <div class="modal-content">
+      <div class="container">
+        <span onclick="document.getElementById('surveyResults').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        <h2> <span id ="mysurvey_name"></span>, your NEW BEST FRIEND is....</h2>
+        <p>Name: <span id ="result_name"></span></p>
+       <img id="result_img" src="" alt="No photo" width="200">
+      </div>
+    </div>
+  </div>
+</div>
+ <script type="text/javascript">
    
     $("#survey-submit").on("click", function(event) {
       event.preventDefault();
@@ -205,37 +221,19 @@
       };
  console.log(newFriend);
  
-    
-      $.post("/api/friends", newFriend,
+    var url=window.location.origin;
+      $.post(url + "/api/friends", newFriend,
       function(friendArray) {
         console.log(friendArray);
         
    
-
-
+$("#mysurvey_name").text(newFriend.name)
+$("#result_name").text(friendArray.name)
+$("#result_img").attr("src", friendArray.photo)
       
       });
     });
   </script>
 
-<div class="container">
- 
- 
-
-  <div id="surveyResults" class="modal">
-    <div class="modal-content">
-      <div class="container">
-        <span onclick="document.getElementById('surveyResults').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-        <h2> <span id ="survey_name"></span>, your NEW BEST FRIEND is....</h2>
-        <p>Name: <span id ="result_name"></span></p>
-       <img id="result_img" src="" alt="No photo" width="200">
-      </div>
-    </div>
-  </div>
-</div>
-<script type = "text/javascript">
-
-
-  </script>
 </body>
 </html>
